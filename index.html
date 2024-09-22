@@ -13,8 +13,18 @@
     <style>
         body {
             font-family: 'Google Sans', Arial, sans-serif;
-            background-color: #131313;
+            background-image: url('betterblack.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: #fff;
+            margin: 0; /* To remove any default margins */
+            padding: 0;
+        }
+        header {
+            background-color: transparent; /* Ensure the header background is transparent */
+            width: 100%;
+            z-index: 50;
         }
 
         .logo-gradient {
@@ -164,7 +174,7 @@
 </head>
 <body class="h-screen flex flex-col items-center">
     <!-- Header -->
-    <header class="w-full p-6 flex justify-between items-center sticky top-0 bg-black z-50">
+    <header class="w-full p-6 flex justify-between items-center sticky top-0 z-50">
         <div class="text-xl font-bold text-white">ZigB</div>
         <nav class="flex items-center space-x-6 text-white">
             <a href="#" onclick="redirectToWhatsApp()" class="text-base hover:text-gray-300">For business</a>
