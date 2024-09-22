@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zigb - AI-Powered Mock Interviews</title>
+    <title>ZigB - AI-Powered Mock Interviews</title>
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- External config file -->
+    <script src="config.js"></script> <!-- Load the config file -->
+    
     <style>
         body {
             font-family: 'Google Sans', Arial, sans-serif;
@@ -196,7 +200,7 @@
         };
 
         function redirectToWhatsApp() {
-            const yourPhoneNumber = '1234567890'; // Replace with your phone number in international format
+            const yourPhoneNumber = config.whatsappPhoneNumber; // Load the phone number from the external config
             const prefilledMessage = 'Hello, I would like to learn more about ZigB.'; // Customize the pre-filled message
             const whatsappUrl = `https://wa.me/${yourPhoneNumber}/?text=${encodeURIComponent(prefilledMessage)}`;
             window.location.href = whatsappUrl; // Redirects to WhatsApp
