@@ -202,9 +202,10 @@
         function redirectToWhatsApp() {
             const yourPhoneNumber = '919949647446';
             const prefilledMessage = 'Hello, I would like to learn more about ZigB.';
-            const whatsappUrl = https://wa.me/${yourPhoneNumber}/?text=${encodeURIComponent(prefilledMessage)};
+            const whatsappUrl = `https://wa.me/${yourPhoneNumber}/?text=${encodeURIComponent(prefilledMessage)}`;
             window.location.href = whatsappUrl;
-        }
+    }
+
     </script>
 </body>
 </html>
