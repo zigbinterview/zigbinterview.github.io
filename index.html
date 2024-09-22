@@ -72,7 +72,9 @@
             }
 
             video {
-                height: 100vh;
+                height: auto;
+                max-height: 50vh; /* Adjust video height on small screens */
+                margin-bottom: 1rem; /* Spacing adjustment */
             }
 
             main {
@@ -112,7 +114,7 @@
         }
     </style>
 </head>
-<body class="h-screen flex flex-col items-center sm:justify-between">
+<body class="h-screen flex flex-col items-center">
     <!-- Header -->
     <header class="w-full p-6 flex justify-between items-center">
         <div class="text-xl font-bold text-white">ZigB</div>
@@ -138,7 +140,7 @@
 
         <!-- Right Section (Responsive Video) -->
         <div class="w-full lg:w-2/5 pt-12">
-            <video id="zigbVideo" class="rounded-lg shadow-lg hover-scale w-full h-full lg:mb-6" autoplay loop muted>
+            <video id="zigbVideo" class="rounded-lg shadow-lg hover-scale w-full lg:mb-6" autoplay loop muted controls>
                 <source src="zigbvideo.mov" type="video/mp4">
                 <source src="zigbvideo.mov" type="video/quicktime">
                 Your browser does not support the video tag.
@@ -200,7 +202,7 @@
         function redirectToWhatsApp() {
             const yourPhoneNumber = '919949647446';
             const prefilledMessage = 'Hello, I would like to learn more about ZigB.';
-            const whatsappUrl = `https://wa.me/${yourPhoneNumber}/?text=${encodeURIComponent(prefilledMessage)}`;
+            const whatsappUrl = https://wa.me/${yourPhoneNumber}/?text=${encodeURIComponent(prefilledMessage)};
             window.location.href = whatsappUrl;
         }
     </script>
