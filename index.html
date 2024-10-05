@@ -102,6 +102,7 @@
             font-family: 'Borel', cursive;
             transition: transform 0.3s ease;
             word-wrap: break-word; /* Allow text to wrap if necessary */
+            text-align: center; /* Ensure the text is centered */
         }
         .hero .flash-text {
             color: #305CDE;
@@ -231,13 +232,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            white-space: nowrap; /* Prevent text wrapping */
         }
         .contact-methods .btn-whatsapp {
             background-color: #25D366;
             color: #ffffff;
             border: none;
-            white-space: nowrap; /* Prevent text wrapping */
-            /* Removed width: 200px; */
         }
         .contact-methods .btn-whatsapp:hover {
             background-color: #1DA851;
@@ -269,7 +269,9 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 4rem; /* Further adjusted for smaller screens */
+                font-size: 3.5rem; /* Reduced for better fit on mobile screens */
+                white-space: nowrap; /* Prevent text from wrapping to the next line */
+                text-align: center; /* Ensure the text is centered */
             }
             .features .features-container {
                 flex-direction: column;
@@ -282,16 +284,7 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-            .email-form .contact-form {
-                padding: 1.5rem;
-            }
-            /* Adjust Typed.js container */
-            .hero-content {
-                padding: 0 1rem; /* Added padding for better spacing */
-            }
-            .hero h1 {
-                word-break: break-word; /* Allow text to wrap within container */
-            }
+            /* Removed Email Form Styles since Email is no longer present */
         }
     </style>
 </head>
@@ -393,7 +386,8 @@
             <div class="contact-methods" data-aos="fade-up" data-aos-delay="100">
                 <!-- Contact via WhatsApp Button -->
                 <button class="btn btn-whatsapp" onclick="redirectToWhatsApp()">
-                    <i class="bi bi-whatsapp me-2"></i> Contact via WhatsApp </button>
+                    <i class="bi bi-whatsapp me-2"></i> Contact via WhatsApp
+                </button>
             </div>
             <!-- Removed Email Form -->
 
