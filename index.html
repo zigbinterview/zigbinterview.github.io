@@ -78,6 +78,7 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
+            padding: 0 1rem; /* Added padding for better spacing on small screens */
         }
         #particles-js {
             position: absolute;
@@ -90,6 +91,7 @@
         .hero-content {
             position: relative;
             z-index: 1;
+            max-width: 100%; /* Ensure content doesn't exceed container */
         }
         .hero h1 {
             font-size: 5rem; /* Reduced from 7rem */
@@ -99,6 +101,7 @@
             /* Applied Borel Regular Font */
             font-family: 'Borel', cursive;
             transition: transform 0.3s ease;
+            word-wrap: break-word; /* Allow text to wrap if necessary */
         }
         .hero .flash-text {
             color: #305CDE;
@@ -218,6 +221,7 @@
             justify-content: center;
             gap: 2rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
         }
         .contact-methods .btn {
             padding: 0.75rem 1.5rem;
@@ -226,14 +230,8 @@
             transition: background-color 0.3s ease;
             display: flex;
             align-items: center;
-        }
-        .contact-methods .btn-email {
-            background-color: #ffffff;
-            color: #1a1a1a;
-            border: none;
-        }
-        .contact-methods .btn-email:hover {
-            background-color: #e0e0e0;
+            width: 200px; /* Consistent button width */
+            justify-content: center;
         }
         .contact-methods .btn-whatsapp {
             background-color: #25D366;
@@ -243,44 +241,7 @@
         .contact-methods .btn-whatsapp:hover {
             background-color: #1DA851;
         }
-        /* Email Form Styles */
-        .email-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: none; /* Hidden by default */
-        }
-        .email-form.active {
-            display: block;
-        }
-        .email-form .contact-form {
-            background-color: #2c2c2c;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-        }
-        .email-form .contact-form label {
-            color: #ffffff;
-            font-weight: 600;
-        }
-        .email-form .form-control {
-            background-color: #3a3a3a;
-            border: none;
-            color: #ffffff;
-        }
-        .email-form .form-control::placeholder {
-            color: #bbbbbb;
-        }
-        .email-form .btn-primary {
-            padding: 0.75rem 2.5rem;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: background-color 0.3s ease;
-            background-color: #305CDE;
-            border: none;
-        }
-        .email-form .btn-primary:hover {
-            background-color: #254aab;
-        }
+        /* Removed Email Button Styles */
 
         /* Footer Styles */
         .footer {
@@ -307,7 +268,7 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 4rem; /* Adjusted for smaller screens */
+                font-size: 4rem; /* Further adjusted for smaller screens */
             }
             .features .features-container {
                 flex-direction: column;
@@ -322,6 +283,13 @@
             }
             .email-form .contact-form {
                 padding: 1.5rem;
+            }
+            /* Adjust Typed.js container */
+            .hero-content {
+                padding: 0 1rem; /* Added padding for better spacing */
+            }
+            .hero h1 {
+                word-break: break-word; /* Allow text to wrap within container */
             }
         }
     </style>
@@ -422,37 +390,15 @@
         <div class="container">
             <h2 data-aos="fade-up">Get in Touch</h2>
             <div class="contact-methods" data-aos="fade-up" data-aos-delay="100">
-                <!-- Contact via Email Button -->
-                <button class="btn btn-email" id="contactEmailBtn">
-                    <i class="bi bi-envelope-fill me-2"></i> Contact via Email
-                </button>
                 <!-- Contact via WhatsApp Button -->
                 <button class="btn btn-whatsapp" onclick="redirectToWhatsApp()">
-                    <i class="bi bi-whatsapp me-2"></i> Contact via WhatsApp
-                </button>
+                    <i class="bi bi-whatsapp me-2"></i> Contact via WhatsApp </button>
             </div>
-            <!-- Email Form -->
-            <div class="email-form" id="emailForm">
-                <form action="YOUR_FORMSPREE_ENDPOINT" method="POST">
-                    <div class="contact-form">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Your Email</label>
-                            <input type="email" class="form-control" id="email" name="_replyto" placeholder="Enter your email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Your Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
-                    </div>
-                </form>
-            </div>
+            <!-- Removed Email Form -->
+
             <!-- Contact Information -->
             <div class="mt-4 text-center">
+                <p><strong>Email:</strong> <a href="mailto:zigbinterview@gmail.com" class="text-decoration-none text-white">zigbinterview@gmail.com</a></p>
             </div>
         </div>
     </section>
@@ -601,11 +547,7 @@
             // Removed onStringTyped callback to prevent font changes
         });
 
-        // Toggle Email Form Display
-        document.getElementById('contactEmailBtn').addEventListener('click', function() {
-            var emailForm = document.getElementById('emailForm');
-            emailForm.classList.toggle('active');
-        });
+        // Removed Toggle Email Form Display since Email is no longer an option
     </script>
     
     <!-- AOS Initialization -->
@@ -649,16 +591,7 @@
             });
         });
 
-        // Handle Contact Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Since we're using Formspree, no need for additional JS
-            // The form will be submitted to Formspree's endpoint
-            alert('Thank you for reaching out! We will get back to you shortly.');
-            this.reset();
-            // Optionally, hide the form after submission
-            document.getElementById('emailForm').classList.remove('active');
-        });
+        // Handle Contact Form Submission (Removed since form is no longer present)
     </script>
 </body>
 </html>
