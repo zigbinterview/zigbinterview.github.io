@@ -3,267 +3,662 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZigB - AI-Powered Mock Interviews</title>
+    <title>ZigB - Interview Super Charger Tool</title>
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for the WhatsApp icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS for Animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Added Borel Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <!-- Custom CSS -->
     <style>
+        /* Global Styles */
         body {
-            font-family: 'Google Sans', Arial, sans-serif;
-            background-image: url('betterblack.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #fff;
-            margin: 0; /* To remove any default margins */
-            padding: 0;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            overflow-x: hidden;
         }
-        header {
-            background-color: transparent; /* Ensure the header background is transparent */
+
+        /* Borel Font Class */
+        .borel-regular {
+            font-family: "Borel", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* Header Styles */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.8);
+            transition: background-color 0.3s ease;
+            padding: 1rem 2rem;
+            z-index: 1000;
+        }
+        .navbar.scrolled {
+            background-color: rgba(10, 10, 10, 1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: #bbbbbb !important;
+            margin-right: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        #particles-js {
+            position: absolute;
             width: 100%;
-            z-index: 50;
+            height: 100%;
+            z-index: 0;
+            top: 0;
+            left: 0;
         }
-
-        .logo-gradient {
-            background: linear-gradient(90deg, #8A2BE2, #00FFFF, #FF1493);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-            padding-bottom: 0.2em;
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
-
-        .fade-in {
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .hover-scale {
-            transition: transform 0.3s ease; /* Applies transition to both hover in and out */
-        }
-
-        .hover-scale:hover {
-            transform: scale(1.05);
+        .hero h1 {
+            font-size: 5rem; /* Reduced from 7rem */
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem; /* Reduced from 1rem */
+            /* Applied Borel Regular Font */
+            font-family: 'Borel', cursive;
             transition: transform 0.3s ease;
         }
-
-        @media (min-width: 1024px) {
-        .hover-scale:hover {
-          transform: scale(1.15); /* Large screens */
-          transition: transform 0.3s ease;
-      }
-  }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .typing {
+        .hero .flash-text {
+            color: #305CDE;
+            /* Removed custom cursor styling */
             white-space: nowrap;
             overflow: hidden;
-            display: inline-block;
+            animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
+            /* Applied Borel Regular Font */
+            font-family: 'Borel', cursive;
+            font-size: 1.2em; /* Slightly increased for prominence */
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #fff }
+        }
+        .hero .btn-primary {
+            padding: 0.75rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+            background-color: #305CDE;
+            border: none;
+            margin-top: 1rem; /* Reduced from 2rem */
+        }
+        .hero .btn-primary:hover {
+            background-color: #254aab;
         }
 
-        #dynamic-part {
-            display: inline-block;
-            white-space: nowrap;
+        /* Features Section Styles */
+        .features {
+            padding: 80px 0;
+            background-color: #141414;
+        }
+        .features .feature-item {
+            text-align: center;
+            padding: 2rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border-radius: 15px;
+            background-color: #1f1f1f;
+            margin: 1rem;
+            flex: 1;
+            min-width: 250px;
+        }
+        .features .feature-item:hover {
+            transform: translateY(-10px);
+            background-color: #2a2a2a;
+        }
+        .features .feature-icon {
+            font-size: 3.5rem;
+            color: #305CDE;
+            margin-bottom: 1rem;
+        }
+        .features h3 {
+            font-size: 1.75rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+        .features p {
+            color: #bbbbbb;
+            font-size: 1rem;
         }
 
-        /* Styling for smaller screens */
-        @media (max-width: 640px) {
-            .text-center {
-                text-align: left !important;
-            }
+        /* Features Container Adjustments */
+        .features .features-container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
 
-            .mb-6 {
-                margin-bottom: 2rem !important;
-            }
+        /* Video Section Styles */
+        .video-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1f1f1f 0%, #121212 100%);
+            text-align: center;
+        }
+        .video-section h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+        }
+        .video-placeholder {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            padding-top: 25px;
+            height: 0;
+        }
+        .video-placeholder video {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        }
 
-            .py-8 {
-                padding-top: 1rem !important;
-            }
+        /* Contact Section Styles */
+        .contact-section {
+            padding: 80px 0;
+            background-color: #1a1a1a;
+        }
+        .contact-section h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .contact-methods .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .contact-methods .btn-email {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            border: none;
+        }
+        .contact-methods .btn-email:hover {
+            background-color: #e0e0e0;
+        }
+        .contact-methods .btn-whatsapp {
+            background-color: #25D366;
+            color: #ffffff;
+            border: none;
+        }
+        .contact-methods .btn-whatsapp:hover {
+            background-color: #1DA851;
+        }
+        /* Email Form Styles */
+        .email-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: none; /* Hidden by default */
+        }
+        .email-form.active {
+            display: block;
+        }
+        .email-form .contact-form {
+            background-color: #2c2c2c;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        }
+        .email-form .contact-form label {
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .email-form .form-control {
+            background-color: #3a3a3a;
+            border: none;
+            color: #ffffff;
+        }
+        .email-form .form-control::placeholder {
+            color: #bbbbbb;
+        }
+        .email-form .btn-primary {
+            padding: 0.75rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+            background-color: #305CDE;
+            border: none;
+        }
+        .email-form .btn-primary:hover {
+            background-color: #254aab;
+        }
 
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
+        /* Footer Styles */
+        .footer {
+            padding: 40px 0;
+            background-color: #0d0d0d;
+            color: #555555;
+            text-align: center;
+        }
+        .footer a {
+            color: #555555;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #305CDE;
+        }
 
-            .w-full {
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .features .feature-item {
+                margin: 1rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 4rem; /* Adjusted for smaller screens */
+            }
+            .features .features-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .video-placeholder video {
                 width: 100%;
             }
-
-            video {
-                height: auto;
-                max-height: 50vh; /* Adjust video height on small screens */
-                margin-bottom: 1rem; /* Spacing adjustment */
-            }
-
-            main {
-                flex-grow: 1;
-                display: flex;
+            .contact-methods {
                 flex-direction: column;
-                justify-content: center;
+                gap: 1rem;
             }
-
-            html, body {
-                overflow-x: hidden;
-                max-width: 100vw;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                scroll-behavior: smooth;
+            .email-form .contact-form {
+                padding: 1.5rem;
             }
-
-            footer p {
-                text-align: center;
-            }
-
-            .text-base {
-                font-size: 1rem;
-            }
-
-            .text-5xl {
-                font-size: 2.75rem;
-            }
-
-            .text-2xl {
-                font-size: 1.9rem;
-            }
-
-            button {
-                padding: 1rem 1.5rem;
-            }
-        }
-
-        /* Fix for scrolling issue */
-        html, body {
-            height: 100%;
-            overflow-y: auto;
-            scroll-behavior: smooth;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-
-        #whatsappButton {
-            background-color: #1eb742; /* New button color */
-            color: white; /* Text and icon color */
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 50px; /* Rounded edges */
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        #whatsappButton i {
-            font-size: 1.5em; /* Larger WhatsApp icon */
-            margin-left: 8px; /* Space between text and icon */
-        }
-
-        #whatsappButton:hover {
-            background-color: #179c36; /* Darker green on hover */
         }
     </style>
 </head>
-<body class="h-screen flex flex-col items-center">
-    <!-- Header -->
-    <header class="w-full p-6 flex justify-between items-center sticky top-0 z-50">
-        <div class="text-xl font-bold text-white">ZigB</div>
-        <nav class="flex items-center space-x-6 text-white">
-            <a href="#" onclick="redirectToWhatsApp()" class="text-base hover:text-gray-300">For business</a>
-            <a href="#" class="text-base hover:text-gray-300">FAQ</a>
-        </nav>
-    </header>
+<body>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 py-2 lg:pr-20 flex flex-col-reverse space-y-4 lg:flex-row items-center justify-between lg:space-y-0 lg:space-x-12 fade-in">
-        <!-- Left Section (ZigB Text and Button) -->
-        <div class="w-full lg:pl-8 pt-6 pb-24 lg:w-1/2 text-center lg:text-left">
-            <h1 class="text-5xl lg:text-7xl font-bold mb-2 lg:mb-0.5 logo-gradient">ZigB</h1>
-            <h2 class="text-2xl lg:text-3xl font-light mb-2 lg:mb-2">Supercharge your Interviews</h2>
-            <div class="text-base text-xs lg:text-xl mb-4 lg:mb-8 text-gray-400">
-                <span>Start, Stop, </span><span id="dynamic-part"></span>
-            </div>
-            <button id="whatsappButton" onclick="redirectToWhatsApp()">
-                Get ZigB <i class="fab fa-whatsapp"></i>
+    <!-- Particles.js Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">ZigB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color: #ffffff;"></span>
             </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#video">Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+    <!-- End of Header -->
 
-        <!-- Right Section (Responsive Video) -->
-        <div class="w-full lg:w-2/5 pt-12">
-            <video id="zigbVideo" class="rounded-lg shadow-lg hover-scale w-full lg:mb-6" autoplay loop muted controls>
-                <source src="zigbvideo.mov" type="video/mp4">
-                <source src="zigbvideo.mov" type="video/quicktime">
-                Your browser does not support the video tag.
-            </video>
+    <!-- Hero Section -->
+    <section id="hero" class="hero d-flex align-items-center">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="borel-regular"><span class="flash-text borel-regular" id="typed"></span></h1>
+            <a href="#video" class="btn btn-primary">Watch Video</a>
         </div>
-    </main>
+    </section>
+    <!-- End of Hero Section -->
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="features-container">
+                <!-- Feature 1 -->
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+                    <h3>Real-Time Transcription</h3>
+                    <p>Instantly transcribe your interview responses with high accuracy, enabling you to review and improve on the spot.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="bi bi-chat-left-dots-fill"></i>
+                    </div>
+                    <h3>Real-Time Answers</h3>
+                    <p>Receive immediate feedback and suggestions to refine your responses, ensuring you deliver your best performance.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="bi bi-brightness-high-fill"></i>
+                    </div>
+                    <h3>Real-Time Context</h3>
+                    <p>Maintain context throughout your interview preparation with dynamic insights and contextual recommendations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Features Section -->
+
+    <!-- Video Section -->
+    <section id="video" class="video-section">
+        <div class="container">
+            <h2 data-aos="fade-up">See ZigB in Action</h2>
+            <div class="video-placeholder" data-aos="zoom-in" data-aos-delay="100">
+                <!-- Embed the video from the same folder -->
+                <video controls>
+                    <source src="zigbvideo.mp4" type="video/mp4">
+                    <source src="zigbvideo.mov" type="video/quicktime">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+    <!-- End of Video Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Get in Touch</h2>
+            <div class="contact-methods" data-aos="fade-up" data-aos-delay="100">
+                <!-- Contact via Email Button -->
+                <button class="btn btn-email" id="contactEmailBtn">
+                    <i class="bi bi-envelope-fill me-2"></i> Contact via Email
+                </button>
+                <!-- Contact via WhatsApp Button -->
+                <button class="btn btn-whatsapp" onclick="redirectToWhatsApp()">
+                    <i class="bi bi-whatsapp me-2"></i> Contact via WhatsApp
+                </button>
+            </div>
+            <!-- Email Form -->
+            <div class="email-form" id="emailForm">
+                <form action="YOUR_FORMSPREE_ENDPOINT" method="POST">
+                    <div class="contact-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" class="form-control" id="email" name="_replyto" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Contact Information -->
+            <div class="mt-4 text-center">
+            </div>
+        </div>
+    </section>
+    <!-- End of Contact Section -->
 
     <!-- Footer -->
-    <footer class="pt-14 pb-2 lg:pb-0.5 text-center text-sm text-gray-500 w-full">
-        <p>&copy; 2024 ZigB. All rights reserved.</p>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 ZigB. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+        </div>
     </footer>
+    <!-- End of Footer -->
 
-    <!-- Typing Animation Script -->
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS JS for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Particles.js Configuration -->
     <script>
-        const dynamicLines = [
-            "the Answers you need are right in front of you.",
-            "boom! Tailored answers delivered instantly.",
-            "watch your perfect answers appear like magic.",
-            "your custom response is ready in seconds.",
-            "your solutions appear, tailored just for you."
-        ];
+        particlesJS("particles-js",
+        {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 700
+                    }
+                },
+                "color": {
+                    "value": "#305CDE"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#305CDE",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 4,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 100,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+    
+    <!-- Typed.js Initialization -->
+    <script>
+        var typed = new Typed('#typed', {
+            strings: ["Hello ZigB!", "Ciao ZigB!", "Hola ZigB!", "Bonjour ZigB!"],
+            typeSpeed: 100,
+            backSpeed: 50,
+            backDelay: 2000,
+            loop: true,
+            showCursor: true, // Enabled default Typed.js cursor
+            cursorChar: '|',  // Default cursor character
+            // Removed onStringTyped callback to prevent font changes
+        });
 
-        let index = 0;
-        let lineIndex = 0;
-        let typingElement = document.getElementById("dynamic-part");
-        let typingSpeed = 25;
-        let deleteSpeed = 25;
-        let pauseBeforeDelete = 2000;
-        let pauseBeforeTyping = 500;
-
-        function typeText() {
-            if (index < dynamicLines[lineIndex].length) {
-                typingElement.innerHTML += dynamicLines[lineIndex].charAt(index);
-                index++;
-                setTimeout(typeText, typingSpeed);
+        // Toggle Email Form Display
+        document.getElementById('contactEmailBtn').addEventListener('click', function() {
+            var emailForm = document.getElementById('emailForm');
+            emailForm.classList.toggle('active');
+        });
+    </script>
+    
+    <!-- AOS Initialization -->
+    <script>
+        AOS.init({
+            duration: 700, // Faster animations
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100,
+        });
+    </script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Navbar Background Change on Scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
             } else {
-                setTimeout(deleteText, pauseBeforeDelete);
+                navbar.classList.remove('scrolled');
             }
-        }
+        });
 
-        function deleteText() {
-            if (index > 0) {
-                typingElement.innerHTML = typingElement.innerHTML.substring(0, index - 1);
-                index--;
-                setTimeout(deleteText, deleteSpeed);
-            } else {
-                lineIndex = (lineIndex + 1) % dynamicLines.length;
-                setTimeout(typeText, pauseBeforeTyping);
-            }
-        }
-
-        window.onload = function() {
-            setTimeout(typeText, pauseBeforeTyping);
-
-            var video = document.getElementById("zigbVideo");
-            video.playbackRate = 1.0;
-        };
-
+        // Function to Redirect to WhatsApp
         function redirectToWhatsApp() {
-            const yourPhoneNumber = '919949647446';
+            const yourPhoneNumber = '919949647446'; // Replace with your phone number
             const prefilledMessage = 'Hello, I would like to learn more about ZigB.';
             const whatsappUrl = `https://wa.me/${yourPhoneNumber}/?text=${encodeURIComponent(prefilledMessage)}`;
             window.location.href = whatsappUrl;
         }
 
+        // Smooth Scroll for "Watch Video" Button (Fallback)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Handle Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Since we're using Formspree, no need for additional JS
+            // The form will be submitted to Formspree's endpoint
+            alert('Thank you for reaching out! We will get back to you shortly.');
+            this.reset();
+            // Optionally, hide the form after submission
+            document.getElementById('emailForm').classList.remove('active');
+        });
     </script>
 </body>
 </html>
