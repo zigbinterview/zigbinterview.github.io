@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ZigB - Start! Stop! Ace Any Interview!</title>
+    <title>ZigB</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
@@ -79,18 +79,39 @@
             max-width: 100%;
         }
         .hero h1 {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
             color: #a8d5ba;
             margin-bottom: 1rem;
             text-shadow: 0 0 20px rgba(168, 213, 186, 0.7);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .hero h2 {
-            font-size: 2rem;
+            font-size: clamp(1.25rem, 3vw, 2rem);
             font-weight: 400;
             margin-bottom: 2rem;
             color: #a8d5ba;
             text-shadow: 0 0 10px rgba(168, 213, 186, 0.5);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .grey-text {
+            color: #b0b0b0;
+            text-shadow: 0 0 10px rgba(176, 176, 176, 0.5);
+        }
+        .zigb-highlight {
+            background: linear-gradient(45deg, #5A67D8, #ED64A6, #48BB78);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            text-shadow:
+                0 0 10px rgba(90, 103, 216, 0.7),
+                0 0 20px rgba(236, 100, 166, 0.7),
+                0 0 30px rgba(72, 187, 120, 0.7);
         }
         .hero .btn-primary {
             padding: 1rem 2rem;
@@ -266,12 +287,6 @@
 
         /* Responsive Styles */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .hero h2 {
-                font-size: 1.5rem;
-            }
             .features .feature-item {
                 margin: 1rem 0;
             }
@@ -280,12 +295,6 @@
             }
         }
         @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero h2 {
-                font-size: 1.25rem;
-            }
             .contact-methods {
                 flex-direction: column;
                 gap: 1rem;
@@ -329,8 +338,11 @@
     <!-- Hero Section -->
     <section id="hero" class="hero d-flex align-items-center">
         <div class="hero-content" data-aos="fade-up">
-            <h1>Start! Stop! Ace Any Interview!</h1>
-            <h2>Empower Your Interview Skills with ZigB</h2>
+            <h1>Start. Stop. Ace Any Interview!</h1>
+            <h2>
+                <span class="grey-text">Empower Your Interview Skills with</span>
+                <span class="zigb-highlight">ZigB</span>
+            </h2>
             <a href="#video" class="btn btn-primary">Watch Video</a>
         </div>
     </section>
@@ -374,7 +386,7 @@
         <div class="container">
             <h2 data-aos="fade-up">See ZigB in Action</h2>
             <div class="video-container" data-aos="fade-up" data-aos-delay="100">
-                <video controls autoplay loop muted>
+                <video id="intro-video" controls muted>
                     <source src="zigbvideo.mp4" type="video/mp4">
                     <source src="zigbvideo.mov" type="video/quicktime">
                     Your browser does not support the video tag.
@@ -451,6 +463,26 @@
             duration: 1000,
             once: true,
         });
+    </script>
+
+    <!-- Autoplay and Loop for Mobile Videos -->
+    <script>
+        function setVideoAttributes() {
+            const video = document.getElementById('intro-video');
+            if (window.innerWidth <= 768) { // Define mobile as width <= 768px
+                video.setAttribute('autoplay', '');
+                video.setAttribute('loop', '');
+            } else {
+                video.removeAttribute('autoplay');
+                video.removeAttribute('loop');
+            }
+        }
+
+        // Initial check
+        setVideoAttributes();
+
+        // Update on resize
+        window.addEventListener('resize', setVideoAttributes);
     </script>
 
 </body>
