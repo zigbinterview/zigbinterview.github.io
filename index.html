@@ -287,8 +287,16 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .video-placeholder {
+                padding-bottom: 0; /* Remove aspect ratio padding */
+                padding-top: 0;     /* Remove top padding */
+                height: auto;       /* Allow height to adjust based on video */
+            }
             .video-placeholder video {
-                width: 100%;
+                width: 100%;        /* Make video take full width */
+                height: 100%;       /* Make video take full height */
+                border-radius: 0;   /* Remove border radius */
+                box-shadow: none;   /* Remove box shadow */
             }
             .contact-methods {
                 flex-direction: column;
