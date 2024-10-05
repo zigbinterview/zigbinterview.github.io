@@ -191,16 +191,15 @@
         }
         .video-placeholder {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            padding-top: 25px;
-            height: 0;
+            /* Removed padding-bottom and padding-top to prevent collapsing on mobile */
+            height: auto;
+            /* Added aspect-ratio for maintaining 16:9 */
+            aspect-ratio: 16 / 9;
+            width: 80%; /* Default width */
+            margin: 0 auto; /* Center the video */
         }
         .video-placeholder video {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
+            width: 100%;
             height: 100%;
             border-radius: 10px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.6);
@@ -210,6 +209,7 @@
             muted
             playsinline
             controls
+            object-fit: cover; /* Ensure the video covers the container */
         }
 
         /* Contact Section Styles */
@@ -276,10 +276,10 @@
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3.5rem; /* Reduced for better fit on mobile screens */
-                white-space: nowrap; /* Prevent text from wrapping to the next line */
+                white-space: normal; /* Allow text to wrap to the next line */
                 text-align: center; /* Ensure the text is centered */
             }
-            /* Added to ensure dynamic text fits on one line on small screens */
+            /* Adjust flash-text for better fit on small screens */
             .hero .flash-text {
                 font-size: 1em; /* Adjusted font size for better fit on mobile screens */
             }
@@ -288,21 +288,41 @@
                 align-items: center;
             }
             .video-placeholder {
-                padding-bottom: 0; /* Remove aspect ratio padding */
-                padding-top: 0;     /* Remove top padding */
-                height: auto;       /* Allow height to adjust based on video */
+                width: 100%;        /* Make video take full width */
+                aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+                /* Remove border-radius and box-shadow for a seamless look */
             }
             .video-placeholder video {
                 width: 100%;        /* Make video take full width */
-                height: 100%;       /* Make video take full height */
+                height: 100%;       /* Adjust height based on aspect ratio */
                 border-radius: 0;   /* Remove border radius */
                 box-shadow: none;   /* Remove box shadow */
+                object-fit: cover;  /* Ensure the video covers the container */
             }
             .contact-methods {
                 flex-direction: column;
                 gap: 1rem;
             }
             /* Removed Email Form Styles since Email is no longer present */
+        }
+
+        @media (max-width: 480px) {
+            .video-section {
+                padding: 40px 0; /* Reduce padding for smaller screens */
+            }
+            .hero h1 {
+                font-size: 2.5rem; /* Further reduce font size */
+            }
+            .hero .flash-text {
+                font-size: 0.9em; /* Further reduce font size */
+            }
+            .video-placeholder {
+                aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+                width: 100%;        /* Full width */
+            }
+            .video-placeholder video {
+                height: auto;       /* Adjust height automatically */
+            }
         }
     </style>
 </head>
