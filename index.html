@@ -204,6 +204,12 @@
             height: 100%;
             border-radius: 10px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+            /* Added autoplay, loop, muted, and playsinline attributes */
+            autoplay
+            loop
+            muted
+            playsinline
+            controls
         }
 
         /* Contact Section Styles */
@@ -372,8 +378,8 @@
         <div class="container">
             <h2 data-aos="fade-up">See ZigB in Action</h2>
             <div class="video-placeholder" data-aos="zoom-in" data-aos-delay="100">
-                <!-- Embed the video from the same folder -->
-                <video controls>
+                <!-- Embed the video from the same folder with autoplay and loop -->
+                <video autoplay loop muted playsinline controls>
                     <source src="zigbvideo.mp4" type="video/mp4">
                     <source src="zigbvideo.mov" type="video/quicktime">
                     Your browser does not support the video tag.
